@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpiderVerse Store | Official Spider-Man Merchandise</title>
+<meta name="description" content="Shop exclusive Spider-Man themed merchandise - bottles, shirts, masks, jackets and more. Enter the Spider-Verse and gear up like your favourite hero!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & VARIABLES
+============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#E63946;--dark-red:#c1121f;--blue:#1a1a6e;
+  --dark:#060608;--darker:#020204;--white:#f1f5f9;--gold:#FFD700;
+  --card-bg:rgba(18,18,36,0.88);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Rajdhani',sans-serif;background:#060608;color:#f1f5f9;overflow-x:hidden}
+
+/* ============================================================
+   PRELOADER
+============================================================ */
+#preloader{
+  position:fixed;inset:0;background:#000;z-index:9999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  animation:preOut .6s ease 4s forwards;
+}
+@keyframes preOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+.pre-web{position:absolute;inset:0;overflow:hidden}
+.pre-svg{width:100%;height:100%}
+/* radial spokes */
+.wl{stroke:#E63946;stroke-width:1;fill:none;stroke-dasharray:3000;stroke-dashoffset:3000}
+.wl:nth-child(1){animation:drawL 1.4s ease .0s forwards}
+.wl:nth-child(2){animation:drawL 1.4s ease .1s forwards}
+.wl:nth-child(3){animation:drawL 1.4s ease .2s forwards}
+.wl:nth-child(4){animation:drawL 1.4s ease .3s forwards}
+.wl:nth-child(5){animation:drawL 1.4s ease .4s forwards}
+.wl:nth-child(6){animation:drawL 1.4s ease .5s forwards}
+.wl:nth-child(7){animation:drawL 1.4s ease .6s forwards}
+.wl:nth-child(8){animation:drawL 1.4s ease .7s forwards}
+.wl:nth-child(9){animation:drawL 1.4s ease .8s forwards}
+.wl:nth-child(10){animation:drawL 1.4s ease .9s forwards}
+.wl:nth-child(11){animation:drawL 1.4s ease 1.0s forwards}
+.wl:nth-child(12){animation:drawL 1.4s ease 1.1s forwards}
+/* concentric arcs */
+.wa{stroke:rgba(230,57,70,.45);stroke-width:.7;fill:none;stroke-dasharray:5000;stroke-dashoffset:5000}
+.wa:nth-child(n+13){animation:drawL 1.8s ease .4s forwards}
+@keyframes drawL{to{stroke-dashoffset:0}}
+/* web-shot strands that SHOOT across screen */
+.wshot{
+  position:absolute;top:0;left:-20%;width:0;height:3px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),#E63946,transparent);
+  border-radius:2px;animation:webShot .55s ease forwards;
+}
+.wshot:nth-child(1){top:35%;animation-delay:.0s}
+.wshot:nth-child(2){top:55%;animation-delay:.18s;transform:rotate(-3deg)}
+.wshot:nth-child(3){top:22%;animation-delay:.34s;transform:rotate(2deg)}
+@keyframes webShot{
+  0%{left:-10%;width:0;opacity:1}
+  60%{left:5%;width:130%;opacity:1}
+  100%{left:110%;width:130%;opacity:0}
+}
+/* preloader logo */
+.pre-logo{position:relative;z-index:2;text-align:center;animation:logoReveal .7s cubic-bezier(.34,1.56,.64,1) 2s both}
+@keyframes logoReveal{from{transform:scale(0) rotate(-180deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.pre-icon{font-size:5.5rem;display:block;filter:drop-shadow(0 0 30px #E63946);animation:pulseG .7s ease-in-out 2.8s infinite alternate}
+@keyframes pulseG{from{filter:drop-shadow(0 0 20px #E63946);transform:scale(1)}to{filter:drop-shadow(0 0 55px #E63946);transform:scale(1.1)}}
+.pre-txt{font-family:'Orbitron',monospace;font-size:1.1rem;letter-spacing:8px;color:#E63946;text-transform:uppercase;animation:slideUp .5s ease 2.3s both}
+@keyframes slideUp{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+.pre-bar-wrap{width:220px;height:2px;background:rgba(255,255,255,.08);margin:18px auto 0;border-radius:2px;overflow:hidden;animation:fadeI .3s ease 2.3s both}
+.pre-bar{height:100%;background:linear-gradient(90deg,#E63946,#FFD700);animation:loadB 1.4s ease 2.5s both}
+@keyframes loadB{from{width:0}to{width:100%}}
+@keyframes fadeI{from{opacity:0}to{opacity:1}}
+
+/* ============================================================
+   FLOATING WEB PARTICLES
+============================================================ */
+.particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.p{position:absolute;width:4px;height:4px;border-radius:50%;background:#E63946;opacity:0}
+.p:nth-child(1){left:5%;animation:floatP 8s ease-in-out 0s infinite}
+.p:nth-child(2){left:12%;animation:floatP 11s ease-in-out 1.5s infinite}
+.p:nth-child(3){left:22%;animation:floatP 9s ease-in-out 2.5s infinite}
+.p:nth-child(4){left:35%;animation:floatP 13s ease-in-out .5s infinite}
+.p:nth-child(5){left:48%;animation:floatP 10s ease-in-out 3s infinite}
+.p:nth-child(6){left:58%;animation:floatP 8s ease-in-out 1s infinite}
+.p:nth-child(7){left:67%;animation:floatP 12s ease-in-out 2s infinite}
+.p:nth-child(8){left:77%;animation:floatP 9s ease-in-out .8s infinite}
+.p:nth-child(9){left:87%;animation:floatP 11s ease-in-out 3.5s infinite}
+.p:nth-child(10){left:95%;animation:floatP 10s ease-in-out 1.8s infinite}
+@keyframes floatP{
+  0%{transform:translateY(105vh) scale(0);opacity:0}
+  10%{opacity:.7}90%{opacity:.3}
+  100%{transform:translateY(-60px) scale(1.5);opacity:0}
+}
+
+/* ============================================================
+   SPIDER DROP + SWING
+============================================================ */
+.spider-hang{
+  position:fixed;top:0;right:90px;z-index:500;pointer-events:none;
+  animation:hangDrop 1.2s cubic-bezier(.25,.46,.45,.94) 4.8s both,
+            swing 4s ease-in-out 6.2s infinite alternate;
+  transform-origin:top center;
+}
+.thread{width:2px;height:110px;margin:0 auto;background:linear-gradient(to bottom,rgba(255,255,255,.7),rgba(255,255,255,.05))}
+.spider-icon{font-size:2.4rem;text-align:center;display:block;filter:drop-shadow(0 0 12px rgba(230,57,70,.9));animation:legWig 3s ease-in-out infinite alternate}
+@keyframes hangDrop{from{transform:translateY(-200px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes swing{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+@keyframes legWig{from{transform:scaleX(1)}to{transform:scaleX(-1)}}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+.nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  padding:.9rem 3rem;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(2,2,4,.88);backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(230,57,70,.18);
+  animation:navDrop .6s ease 4.2s both;
+}
+@keyframes navDrop{from{transform:translateY(-110%);opacity:0}to{transform:translateY(0);opacity:1}}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-orb{
+  width:44px;height:44px;border-radius:50%;background:#E63946;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  box-shadow:0 0 22px rgba(230,57,70,.55);position:relative;
+  animation:orbSpin .6s ease 4.6s both;
+}
+@keyframes orbSpin{from{transform:rotate(-360deg)}}
+.logo-orb::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #E63946;animation:orbPulse 2s ease infinite}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:0}}
+.logo-txt{font-family:'Bebas Neue',cursive;font-size:1.75rem;letter-spacing:3px;background:linear-gradient(135deg,#E63946,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;list-style:none;gap:2rem;align-items:center}
+.nav-links a{color:#f1f5f9;text-decoration:none;font-weight:600;font-size:.85rem;letter-spacing:2px;text-transform:uppercase;position:relative;padding:4px 0;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,#E63946,#FFD700);transition:width .3s}
+.nav-links a:hover{color:#E63946}.nav-links a:hover::after{width:100%}
+.nav-cart{
+  position:relative;background:linear-gradient(135deg,#E63946,#c1121f);
+  border:none;border-radius:30px;padding:10px 26px;color:#fff;
+  font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;
+  letter-spacing:1px;cursor:pointer;display:flex;align-items:center;gap:8px;
+  box-shadow:0 4px 18px rgba(230,57,70,.45);overflow:hidden;transition:all .3s;
+}
+.nav-cart::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transition:left .5s}
+.nav-cart:hover::before{left:100%}
+.nav-cart:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(230,57,70,.65)}
+.cart-badge{position:absolute;top:-5px;right:-4px;background:#FFD700;color:#000;width:19px;height:19px;border-radius:50%;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{
+  min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 45%,rgba(26,26,110,.5) 0%,transparent 65%),
+    radial-gradient(ellipse at 28% 55%,rgba(230,57,70,.25) 0%,transparent 60%),
+    #020204;
+}
+.hero-web{
+  position:absolute;inset:0;transform:scale(2.2);
+  background-image:
+    repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg,transparent 14deg,rgba(255,255,255,.025) 14deg,rgba(255,255,255,.025) 15deg),
+    repeating-radial-gradient(ellipse at 50% 50%,transparent 0px,transparent 70px,rgba(255,255,255,.025) 70px,rgba(255,255,255,.025) 72px);
+  animation:webSpin 70s linear infinite;
+}
+@keyframes webSpin{to{transform:scale(2.2) rotate(360deg)}}
+.hero-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,#020204 0%,rgba(2,2,4,.55) 55%,transparent 100%),
+             linear-gradient(to top,#020204 0%,transparent 40%);
+}
+/* SVG corner web top-right */
+.corner-web{position:absolute;top:-15px;right:-15px;width:520px;height:520px;opacity:.28;animation:cPulse 5s ease infinite alternate}
+@keyframes cPulse{from{opacity:.18;transform:scale(1)}to{opacity:.38;transform:scale(1.06)}}
+
+.hero-content{
+  position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 3.5rem;padding-top:110px;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4rem;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(230,57,70,.12);border:1px solid rgba(230,57,70,.4);border-radius:50px;
+  padding:6px 18px;font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#E63946;
+  margin-bottom:1.5rem;animation:slideR .7s ease 4.5s both;
+}
+@keyframes slideR{from{transform:translateX(-35px);opacity:0}to{transform:translateX(0);opacity:1}}
+.bdot{width:7px;height:7px;border-radius:50%;background:#E63946;animation:dotBlink 1s infinite}
+@keyframes dotBlink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* GLITCH TITLE */
+.hero-title{
+  font-family:'Bebas Neue',cursive;font-size:clamp(3.8rem,7.5vw,7rem);line-height:.92;
+  margin-bottom:1.6rem;position:relative;animation:titleUp .8s ease 4.7s both;
+}
+@keyframes titleUp{from{transform:translateY(45px);opacity:0}to{transform:translateY(0);opacity:1}}
+.t-white{display:block;color:#f1f5f9;position:relative}
+.t-red{
+  display:block;position:relative;
+  background:linear-gradient(135deg,#E63946,#ff7e7e,#FFD700);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  background-size:200% 200%;animation:shimmerG 4s ease infinite 5.5s;
+}
+@keyframes shimmerG{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.t-white::before,.t-white::after{content:attr(data-g);position:absolute;top:0;left:0;font-family:'Bebas Neue',cursive;font-size:inherit;line-height:inherit;width:100%}
+.t-white::before{color:#E63946;clip-path:polygon(0 25%,100% 25%,100% 45%,0 45%);animation:glitchA 6s infinite linear}
+.t-white::after{color:#4fc3f7;clip-path:polygon(0 65%,100% 65%,100% 80%,0 80%);animation:glitchB 6s infinite linear}
+@keyframes glitchA{0%,80%,100%{transform:translate(0)}85%{transform:translate(-6px,2px)}90%{transform:translate(6px,-2px)}}
+@keyframes glitchB{0%,80%,100%{transform:translate(0)}85%{transform:translate(5px,2px)}90%{transform:translate(-5px,-2px)}}
+
+.hero-desc{font-size:1.08rem;line-height:1.85;color:rgba(255,255,255,.58);max-width:480px;margin-bottom:2.5rem;animation:fadeUp .8s ease 4.9s both}
+@keyframes fadeUp{from{transform:translateY(22px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s ease 5.1s both}
+.btn-p,.btn-s{
+  padding:15px 36px;font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;border-radius:4px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.btn-p{background:linear-gradient(135deg,#E63946,#c1121f);border:none;color:#fff;box-shadow:0 4px 18px rgba(230,57,70,.4)}
+.btn-p::before{content:'';position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.3) 0%,transparent 65%);transform:scale(0);transition:transform .5s}
+.btn-p:hover::before{transform:scale(1.5)}.btn-p:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(230,57,70,.6)}
+.btn-s{background:transparent;color:#f1f5f9;border:2px solid rgba(255,255,255,.28)}
+.btn-s:hover{border-color:#E63946;color:#E63946;transform:translateY(-3px)}
+
+.hero-stats{display:flex;gap:2.8rem;margin-top:3rem;animation:fadeUp .8s ease 5.3s both}
+.stat-n{font-family:'Orbitron',monospace;font-size:1.55rem;font-weight:900;color:#E63946;display:block}
+.stat-l{font-size:.72rem;letter-spacing:2px;color:rgba(255,255,255,.38);text-transform:uppercase}
+
+/* Hero right orb */
+.hero-img{position:relative;display:flex;justify-content:center;align-items:center;animation:heroIn 1s ease 4.6s both}
+@keyframes heroIn{from{transform:translateX(55px);opacity:0}to{transform:translateX(0);opacity:1}}
+.orb{
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(230,57,70,.28),rgba(26,26,110,.45),transparent);
+  border:1px solid rgba(230,57,70,.18);display:flex;align-items:center;justify-content:center;position:relative;
+  animation:orbFloat 7s ease-in-out infinite;
+}
+@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.orb::before{content:'';position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,#E63946,transparent 40%,#1a1a6e,transparent 80%,#E63946);z-index:-1;animation:orbBorder 10s linear infinite}
+@keyframes orbBorder{to{transform:rotate(360deg)}}
+.hero-spider{font-size:13rem;line-height:1;filter:drop-shadow(0 0 55px rgba(230,57,70,.65));animation:spiderBob 3.5s ease-in-out infinite alternate}
+@keyframes spiderBob{from{transform:scale(1) rotate(-6deg);filter:drop-shadow(0 0 35px rgba(230,57,70,.4))}to{transform:scale(1.07) rotate(6deg);filter:drop-shadow(0 0 85px rgba(230,57,70,.85))}}
+.ring{position:absolute;border-radius:50%;border:1px dashed rgba(230,57,70,.25)}
+.ring:nth-child(1){width:530px;height:530px;animation:orbitSpin 22s linear infinite}
+.ring:nth-child(2){width:610px;height:610px;animation:orbitSpin 34s linear infinite reverse}
+.ring-dot{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;background:#E63946;box-shadow:0 0 14px #E63946}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+
+/* scroll hint */
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp .8s ease 5.8s both}
+.scroll-mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,.28);border-radius:12px;display:flex;justify-content:center}
+.scroll-w{width:4px;height:8px;background:#E63946;border-radius:2px;margin-top:6px;animation:scrollY 1.6s ease infinite}
+@keyframes scrollY{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+.scroll-txt{font-size:.68rem;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase}
+
+/* ============================================================
+   MARQUEE
+============================================================ */
+.ticker{padding:1.6rem 0;background:#E63946;overflow:hidden;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+.ticker-track{display:flex;gap:3rem;width:max-content;animation:tickerMove 24s linear infinite}
+.ticker-item{display:flex;align-items:center;gap:1rem;white-space:nowrap;font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:3px;color:#fff}
+.tdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.55);flex-shrink:0}
+@keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   SHARED SECTION HEADER
+============================================================ */
+.s-head{text-align:center;margin-bottom:4rem}
+.s-tag{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;letter-spacing:4px;text-transform:uppercase;color:#E63946;font-weight:700;margin-bottom:1rem}
+.s-tag::before,.s-tag::after{content:'';display:inline-block;width:30px;height:1px;background:#E63946}
+.s-title{font-family:'Bebas Neue',cursive;font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.1;margin-bottom:1rem}
+.s-title span{background:linear-gradient(135deg,#E63946,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s-sub{color:rgba(255,255,255,.48);font-size:.98rem;max-width:500px;margin:0 auto;line-height:1.75}
+
+/* ============================================================
+   PRODUCTS
+============================================================ */
+.products{padding:8rem 3.5rem;background:linear-gradient(to bottom,#020204,#060608)}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2rem;max-width:1400px;margin:0 auto}
+
+.card{
+  background:rgba(18,18,36,.88);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.05);
+  position:relative;transition:transform .4s cubic-bezier(.34,1.56,.64,1),border-color .3s,box-shadow .4s;
+  cursor:pointer;backdrop-filter:blur(12px);animation:cardIn .6s ease both;
+}
+.card:nth-child(1){animation-delay:.1s}.card:nth-child(2){animation-delay:.2s}.card:nth-child(3){animation-delay:.3s}
+.card:nth-child(4){animation-delay:.4s}.card:nth-child(5){animation-delay:.5s}.card:nth-child(6){animation-delay:.6s}
+@keyframes cardIn{from{transform:translateY(45px);opacity:0}to{transform:translateY(0);opacity:1}}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(230,57,70,.1),transparent);opacity:0;transition:opacity .35s;z-index:1}
+.card:hover::before{opacity:1}
+.card:hover{transform:translateY(-12px) scale(1.02);border-color:rgba(230,57,70,.42);box-shadow:0 25px 65px rgba(230,57,70,.2),0 0 0 1px rgba(230,57,70,.18)}
+
+.card-img{
+  height:260px;position:relative;background:linear-gradient(135deg,rgba(26,26,110,.5),rgba(5,5,8,.85));
+  overflow:hidden;display:flex;align-items:center;justify-content:center;
+}
+.card-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,rgba(18,18,36,.88),transparent)}
+.card-web{
+  position:absolute;inset:0;opacity:0;transition:opacity .35s;
+  background-image:
+    repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg,transparent 14deg,rgba(255,255,255,.025) 14deg,rgba(255,255,255,.025) 15deg),
+    repeating-radial-gradient(ellipse at 50% 50%,transparent 0px,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 41px);
+}
+.card:hover .card-web{opacity:1}
+.c-emoji{font-size:8rem;position:relative;z-index:1;filter:drop-shadow(0 8px 24px rgba(230,57,70,.4));transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.card:hover .c-emoji{transform:scale(1.25) rotate(-8deg)}
+.c-badge{position:absolute;top:14px;left:14px;z-index:2;padding:4px 13px;border-radius:50px;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.b-new{background:linear-gradient(135deg,#E63946,#c1121f);color:#fff}
+.b-hot{background:linear-gradient(135deg,#ff6b00,#ff4500);color:#fff}
+.b-ltd{background:linear-gradient(135deg,#FFD700,#ffa500);color:#000}
+.c-wish{position:absolute;top:14px;right:14px;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;transition:all .3s;backdrop-filter:blur(6px)}
+.c-wish:hover{background:#E63946;transform:scale(1.15)}
+
+.card-info{padding:1.4rem;position:relative;z-index:1}
+.c-cat{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#E63946;font-weight:700;margin-bottom:5px}
+.c-stars{display:flex;gap:3px;margin-bottom:7px}
+.st{color:#FFD700;font-size:.78rem}
+.st-c{color:rgba(255,255,255,.38);font-size:.73rem;margin-left:5px}
+.c-name{font-family:'Orbitron',monospace;font-size:.93rem;font-weight:700;margin-bottom:7px;letter-spacing:1px;transition:color .3s}
+.card:hover .c-name{color:#E63946}
+.c-desc{font-size:.82rem;color:rgba(255,255,255,.48);line-height:1.65;margin-bottom:1.2rem}
+.c-foot{display:flex;align-items:center;justify-content:space-between}
+.c-price{display:flex;flex-direction:column}
+.p-old{font-size:.72rem;color:rgba(255,255,255,.28);text-decoration:line-through}
+.p-now{font-family:'Orbitron',monospace;font-size:1.25rem;font-weight:700}
+.p-now em{color:#E63946;font-style:normal;font-size:.85rem}
+.btn-cart{
+  background:linear-gradient(135deg,#E63946,#c1121f);color:#fff;border:none;
+  padding:10px 20px;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:700;
+  letter-spacing:1px;cursor:pointer;display:flex;align-items:center;gap:8px;position:relative;overflow:hidden;transition:all .3s;
+}
+.btn-cart::after{content:'';position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,.3);border-radius:50%;transform:translate(-50%,-50%);transition:width .4s,height .4s}
+.btn-cart:hover::after{width:200px;height:200px}
+.btn-cart:hover{transform:scale(1.06);box-shadow:0 6px 22px rgba(230,57,70,.55)}
+
+/* ============================================================
+   BANNER / WHY-US
+============================================================ */
+.banner{padding:7rem 3.5rem;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(230,57,70,.15) 0%,rgba(26,26,110,.35) 100%)}
+.banner::before{content:'';position:absolute;inset:0;background-image:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg,transparent 14deg,rgba(255,255,255,.018) 14deg,rgba(255,255,255,.018) 15deg),repeating-radial-gradient(ellipse at 50% 50%,transparent 0px,transparent 70px,rgba(255,255,255,.018) 70px,rgba(255,255,255,.018) 72px);animation:webSpin 50s linear infinite}
+.banner-inner{position:relative;z-index:1;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.ban-text h2{font-family:'Bebas Neue',cursive;font-size:clamp(2.4rem,4.5vw,4rem);line-height:1;margin-bottom:1.4rem}
+.ban-text h2 span{background:linear-gradient(135deg,#E63946,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ban-text p{color:rgba(255,255,255,.55);font-size:1.05rem;line-height:1.85;margin-bottom:2rem}
+.features{display:flex;flex-direction:column;gap:1rem}
+.fi{display:flex;align-items:center;gap:16px;padding:1rem 1.4rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;transition:all .3s}
+.fi:hover{background:rgba(230,57,70,.1);border-color:rgba(230,57,70,.3);transform:translateX(12px)}
+.fi-icon{font-size:1.85rem;flex-shrink:0}
+.fi-text h4{font-size:.9rem;font-weight:700;letter-spacing:1px;margin-bottom:3px}
+.fi-text p{font-size:.78rem;color:rgba(255,255,255,.38);margin:0}
+
+/* ============================================================
+   CATEGORIES
+============================================================ */
+.categories{padding:8rem 3.5rem;background:#020204;position:relative;overflow:hidden}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1400px;margin:0 auto}
+.cat-card{position:relative;height:200px;border-radius:16px;overflow:hidden;cursor:pointer;border:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;transition:all .4s;text-decoration:none;color:#fff}
+.cat-card:nth-child(1){background:linear-gradient(135deg,rgba(230,57,70,.35),rgba(180,0,20,.55))}
+.cat-card:nth-child(2){background:linear-gradient(135deg,rgba(26,26,110,.5),rgba(0,0,80,.7))}
+.cat-card:nth-child(3){background:linear-gradient(135deg,rgba(255,150,0,.3),rgba(200,100,0,.55))}
+.cat-card:nth-child(4){background:linear-gradient(135deg,rgba(0,160,110,.3),rgba(0,110,75,.55))}
+.cat-card::before{content:'';position:absolute;inset:0;background-image:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg,transparent 14deg,rgba(255,255,255,.03) 14deg,rgba(255,255,255,.03) 15deg),repeating-radial-gradient(ellipse at 50% 50%,transparent 0px,transparent 30px,rgba(255,255,255,.03) 30px,rgba(255,255,255,.03) 31px);opacity:0;transition:opacity .35s}
+.cat-card:hover::before{opacity:1}
+.cat-card:hover{transform:translateY(-10px) scale(1.03);border-color:rgba(230,57,70,.45);box-shadow:0 22px 55px rgba(0,0,0,.45)}
+.cat-icon{font-size:3.5rem;z-index:1;position:relative;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.cat-card:hover .cat-icon{transform:scale(1.25) rotate(-12deg)}
+.cat-name{font-family:'Orbitron',monospace;font-size:.88rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;z-index:1}
+.cat-count{font-size:.72rem;color:rgba(255,255,255,.48);z-index:1}
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+.testimonials{padding:8rem 3.5rem;background:linear-gradient(to bottom,#060608,#020204)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1400px;margin:0 auto}
+.t-card{background:rgba(18,18,36,.88);border-radius:16px;padding:2rem;border:1px solid rgba(255,255,255,.05);position:relative;transition:all .3s;backdrop-filter:blur(10px)}
+.t-card::before{content:'"';position:absolute;top:-12px;left:18px;font-size:8rem;font-family:'Bebas Neue',cursive;color:rgba(230,57,70,.18);line-height:1;pointer-events:none}
+.t-card:hover{transform:translateY(-10px);border-color:rgba(230,57,70,.3);box-shadow:0 22px 55px rgba(0,0,0,.35)}
+.t-stars{display:flex;gap:4px;margin-bottom:1rem}
+.t-text{font-size:.93rem;line-height:1.82;color:rgba(255,255,255,.68);margin-bottom:1.5rem}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#E63946,#1a1a6e);display:flex;align-items:center;justify-content:center;font-size:1.2rem;border:2px solid rgba(230,57,70,.4);flex-shrink:0}
+.t-name{font-weight:700;font-size:.9rem;letter-spacing:1px}
+.t-loc{font-size:.73rem;color:rgba(255,255,255,.38);letter-spacing:1px}
+
+/* ============================================================
+   NEWSLETTER
+============================================================ */
+.newsletter{padding:8rem 3.5rem;position:relative;overflow:hidden;background:#020204}
+.nl-glow{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(230,57,70,.14) 0%,transparent 70%);pointer-events:none}
+.nl-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;text-align:center}
+.nl-icon{font-size:4rem;display:block;margin-bottom:1.5rem;animation:nlBounce 2.2s ease-in-out infinite}
+@keyframes nlBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.nl-inner h2{font-family:'Bebas Neue',cursive;font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:1rem}
+.nl-inner h2 span{background:linear-gradient(135deg,#E63946,#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nl-inner p{color:rgba(255,255,255,.48);margin-bottom:2.5rem;line-height:1.72}
+.nl-form{display:flex;border-radius:50px;overflow:hidden;border:2px solid rgba(230,57,70,.38);background:rgba(255,255,255,.04);backdrop-filter:blur(10px);transition:border-color .3s}
+.nl-form:focus-within{border-color:#E63946;box-shadow:0 0 32px rgba(230,57,70,.22)}
+.nl-input{flex:1;background:transparent;border:none;padding:15px 24px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.97rem;outline:none}
+.nl-input::placeholder{color:rgba(255,255,255,.28)}
+.nl-btn{background:linear-gradient(135deg,#E63946,#c1121f);border:none;padding:15px 32px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;flex-shrink:0;transition:background .3s}
+.nl-btn:hover{background:linear-gradient(135deg,#c1121f,#E63946)}
+.nl-note{margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{background:#020204;border-top:1px solid rgba(255,255,255,.04);padding:4.5rem 3.5rem 2rem;position:relative;overflow:hidden}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#E63946,transparent)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;max-width:1400px;margin:0 auto 3rem}
+.foot-brand p{color:rgba(255,255,255,.45);font-size:.88rem;line-height:1.8;margin:1rem 0 1.5rem}
+.socials{display:flex;gap:12px}
+.soc{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:all .3s;text-decoration:none;color:#fff;background:rgba(255,255,255,.05)}
+.soc:hover{background:#E63946;border-color:#E63946;transform:translateY(-4px);box-shadow:0 10px 22px rgba(230,57,70,.45)}
+.foot-col h4{font-family:'Orbitron',monospace;font-size:.82rem;letter-spacing:3px;text-transform:uppercase;color:#E63946;margin-bottom:1.4rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+.foot-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.88rem;transition:all .3s;display:flex;align-items:center;gap:6px}
+.foot-links a::before{content:'→';color:#E63946;font-size:.78rem;opacity:0;transform:translateX(-10px);transition:all .3s}
+.foot-links a:hover{color:#fff;padding-left:10px}
+.foot-links a:hover::before{opacity:1;transform:translateX(0)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:2rem;max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.foot-bottom p{color:rgba(255,255,255,.28);font-size:.83rem}
+.foot-bottom p span{color:#E63946}
+.bot-links{display:flex;gap:2rem}
+.bot-links a{color:rgba(255,255,255,.28);text-decoration:none;font-size:.78rem;transition:color .3s}
+.bot-links a:hover{color:#E63946}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width:1100px){
+  .hero-content{grid-template-columns:1fr;text-align:center;padding:120px 2rem 4rem}
+  .hero-img{order:-1}
+  .orb{width:340px;height:340px}
+  .hero-spider{font-size:9rem}
+  .hero-btns,.hero-stats{justify-content:center}
+  .hero-desc{margin:0 auto 2.5rem}
+  .ring:nth-child(1){width:380px;height:380px}
+  .ring:nth-child(2){width:440px;height:440px}
+  .banner-inner{grid-template-columns:1fr;text-align:center}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav{padding:.9rem 1.5rem}
+  .nav-links{display:none}
+  .products,.banner,.categories,.testimonials,.newsletter{padding:5rem 1.5rem}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:2.5rem}
+  .spider-hang{display:none}
+  .hero-stats{gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="wshot"></div>
+  <div class="wshot"></div>
+  <div class="wshot"></div>
+  <div class="pre-web">
+    <svg class="pre-svg" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+      <line class="wl" x1="960" y1="540" x2="960" y2="0"/>
+      <line class="wl" x1="960" y1="540" x2="1440" y2="0"/>
+      <line class="wl" x1="960" y1="540" x2="1920" y2="270"/>
+      <line class="wl" x1="960" y1="540" x2="1920" y2="540"/>
+      <line class="wl" x1="960" y1="540" x2="1920" y2="810"/>
+      <line class="wl" x1="960" y1="540" x2="1440" y2="1080"/>
+      <line class="wl" x1="960" y1="540" x2="960"  y2="1080"/>
+      <line class="wl" x1="960" y1="540" x2="480"  y2="1080"/>
+      <line class="wl" x1="960" y1="540" x2="0"    y2="810"/>
+      <line class="wl" x1="960" y1="540" x2="0"    y2="540"/>
+      <line class="wl" x1="960" y1="540" x2="0"    y2="270"/>
+      <line class="wl" x1="960" y1="540" x2="480"  y2="0"/>
+      <ellipse class="wa" cx="960" cy="540" rx="120" ry="80"/>
+      <ellipse class="wa" cx="960" cy="540" rx="240" ry="160"/>
+      <ellipse class="wa" cx="960" cy="540" rx="380" ry="250"/>
+      <ellipse class="wa" cx="960" cy="540" rx="540" ry="340"/>
+      <ellipse class="wa" cx="960" cy="540" rx="720" ry="440"/>
+      <ellipse class="wa" cx="960" cy="540" rx="960" ry="560"/>
+    </svg>
+  </div>
+  <div class="pre-logo">
+    <span class="pre-icon">🕷️</span>
+    <div class="pre-txt">SpiderVerse Store</div>
+    <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+  </div>
+</div>
+
+<!-- FLOATING PARTICLES -->
+<div class="particles">
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div><div class="p"></div><div class="p"></div>
+  <div class="p"></div>
+</div>
+
+<!-- SPIDER HANGING ON THREAD -->
+<div class="spider-hang">
+  <div class="thread"></div>
+  <span class="spider-icon">🕷️</span>
+</div>
+
+<!-- NAVBAR -->
+<nav class="nav" id="navbar">
+  <a href="#home" class="nav-logo">
+    <div class="logo-orb">🕸️</div>
+    <span class="logo-txt">SPIDERVERSE</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cart" id="cart-btn" aria-label="Shopping cart">
+    🛒 Cart <span class="cart-badge" id="cart-count">3</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-web"></div>
+  <div class="hero-ov"></div>
+  <!-- Corner SVG web -->
+  <svg class="corner-web" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <line x1="500" y1="0" x2="500" y2="500" stroke="rgba(230,57,70,.5)" stroke-width="1.2"/>
+    <line x1="500" y1="0" x2="340" y2="500" stroke="rgba(230,57,70,.38)" stroke-width=".9"/>
+    <line x1="500" y1="0" x2="180" y2="500" stroke="rgba(230,57,70,.28)" stroke-width=".8"/>
+    <line x1="500" y1="0" x2="0"   y2="420" stroke="rgba(230,57,70,.22)" stroke-width=".7"/>
+    <line x1="500" y1="0" x2="0"   y2="240" stroke="rgba(230,57,70,.18)" stroke-width=".6"/>
+    <line x1="500" y1="0" x2="0"   y2="0"   stroke="rgba(230,57,70,.32)" stroke-width=".9"/>
+    <line x1="500" y1="90"  x2="420" y2="90"  stroke="rgba(230,57,70,.3)"  stroke-width=".6"/>
+    <line x1="500" y1="90"  x2="370" y2="150" stroke="rgba(230,57,70,.22)" stroke-width=".5"/>
+    <line x1="500" y1="90"  x2="330" y2="210" stroke="rgba(230,57,70,.18)" stroke-width=".5"/>
+    <line x1="500" y1="180" x2="370" y2="180" stroke="rgba(230,57,70,.26)" stroke-width=".6"/>
+    <line x1="500" y1="180" x2="320" y2="260" stroke="rgba(230,57,70,.18)" stroke-width=".5"/>
+    <line x1="500" y1="280" x2="405" y2="280" stroke="rgba(230,57,70,.2)"  stroke-width=".5"/>
+    <line x1="500" y1="0"   x2="438" y2="65"  stroke="rgba(230,57,70,.3)"  stroke-width=".6"/>
+    <line x1="500" y1="0"   x2="440" y2="150" stroke="rgba(230,57,70,.22)" stroke-width=".5"/>
+  </svg>
+
+  <div class="hero-content">
+    <!-- LEFT TEXT -->
+    <div class="hero-text">
+      <div class="hero-badge"><span class="bdot"></span>New Collection 2026</div>
+      <h1 class="hero-title">
+        <span class="t-white" data-g="ENTER THE">ENTER THE</span>
+        <span class="t-red">SPIDER-VERSE</span>
+      </h1>
+      <p class="hero-desc">Gear up with exclusive Spider-Man merchandise. From web-slinging bottles to suit-worthy jackets &mdash; suit up for every adventure with your favourite web-crawler.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-p">&#x1F578;&#xFE0F; Shop Now</a>
+        <a href="#categories" class="btn-s">Explore All &rarr;</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="stat-n">500+</span><span class="stat-l">Products</span></div>
+        <div><span class="stat-n">50K+</span><span class="stat-l">Fans Served</span></div>
+        <div><span class="stat-n">4.9&#9733;</span><span class="stat-l">Rating</span></div>
+      </div>
+    </div>
+    <!-- RIGHT ORB -->
+    <div class="hero-img">
+      <div class="ring"><div class="ring-dot"></div></div>
+      <div class="ring"><div class="ring-dot"></div></div>
+      <div class="orb"><span class="hero-spider">&#x1F577;&#xFE0F;</span></div>
+    </div>
+  </div>
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <div class="scroll-mouse"><div class="scroll-w"></div></div>
+    <span class="scroll-txt">Scroll Down</span>
+  </div>
+</section>
+
+<!-- MARQUEE TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="tdot"></span>FREE SHIPPING ON ORDERS ABOVE &#8377;999</div>
+    <div class="ticker-item"><span class="tdot"></span>EXCLUSIVE SPIDER-MAN MERCHANDISE</div>
+    <div class="ticker-item"><span class="tdot"></span>NEW ARRIVALS EVERY WEEK</div>
+    <div class="ticker-item"><span class="tdot"></span>LIMITED EDITION COLLECTOR'S ITEMS</div>
+    <div class="ticker-item"><span class="tdot"></span>30-DAY HASSLE-FREE RETURNS</div>
+    <div class="ticker-item"><span class="tdot"></span>OFFICIAL MARVEL LICENSED PRODUCTS</div>
+    <div class="ticker-item"><span class="tdot"></span>FREE SHIPPING ON ORDERS ABOVE &#8377;999</div>
+    <div class="ticker-item"><span class="tdot"></span>EXCLUSIVE SPIDER-MAN MERCHANDISE</div>
+    <div class="ticker-item"><span class="tdot"></span>NEW ARRIVALS EVERY WEEK</div>
+    <div class="ticker-item"><span class="tdot"></span>LIMITED EDITION COLLECTOR'S ITEMS</div>
+    <div class="ticker-item"><span class="tdot"></span>30-DAY HASSLE-FREE RETURNS</div>
+    <div class="ticker-item"><span class="tdot"></span>OFFICIAL MARVEL LICENSED PRODUCTS</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products" class="products">
+  <div class="s-head">
+    <div class="s-tag">&#x1F578;&#xFE0F; Featured Collection</div>
+    <h2 class="s-title">Web-Slinging <span>Bestsellers</span></h2>
+    <p class="s-sub">The most loved Spider-Man merchandise &mdash; hand-picked for true fans of every Spider-Verse.</p>
+  </div>
+  <div class="products-grid">
+
+    <!-- Bottle -->
+    <div class="card" id="product-bottle">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x1F376;</span>
+        <span class="c-badge b-new">New</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Accessories</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(142)</span></div>
+        <h3 class="c-name">SPIDER-MAN HYDRO BOTTLE</h3>
+        <p class="c-desc">Stainless-steel insulated bottle with full Spider-Man wrap. Keeps drinks cold 24h, hot 12h.</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;999</span><span class="p-now"><em>&#8377;</em>699</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- T-Shirt -->
+    <div class="card" id="product-tshirt">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x1F455;</span>
+        <span class="c-badge b-hot">Hot</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Apparel</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(289)</span></div>
+        <h3 class="c-name">WEB-SLINGER GRAPHIC TEE</h3>
+        <p class="c-desc">Premium 100% cotton graphic tee with iconic Spider-Man web design. All sizes available.</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;1299</span><span class="p-now"><em>&#8377;</em>899</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mask -->
+    <div class="card" id="product-mask">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x1F3AD;</span>
+        <span class="c-badge b-ltd">Limited</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Collectibles</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(97)</span></div>
+        <h3 class="c-name">SPIDER-MAN COLLECTOR'S MASK</h3>
+        <p class="c-desc">Movie-accurate fabric mask with foam lenses. Perfect for cosplay or display collection.</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;3499</span><span class="p-now"><em>&#8377;</em>2499</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jacket -->
+    <div class="card" id="product-jacket">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x1F9E5;</span>
+        <span class="c-badge b-hot">Hot</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Apparel</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(201)</span></div>
+        <h3 class="c-name">SPIDER-VERSE VARSITY JACKET</h3>
+        <p class="c-desc">Iconic varsity jacket with embroidered Spider-Man logo, web-pattern lining and premium rib detailing.</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;4999</span><span class="p-now"><em>&#8377;</em>3499</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mug -->
+    <div class="card" id="product-mug">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x2615;</span>
+        <span class="c-badge b-new">New</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Accessories</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(78)</span></div>
+        <h3 class="c-name">SPIDEY SENSE COFFEE MUG</h3>
+        <p class="c-desc">Heat-reactive ceramic mug &mdash; pour hot coffee to reveal Spider-Man's full web suit design!</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;799</span><span class="p-now"><em>&#8377;</em>499</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hoodie -->
+    <div class="card" id="product-hoodie">
+      <div class="card-img">
+        <div class="card-web"></div>
+        <span class="c-emoji">&#x1F97A;</span>
+        <span class="c-badge b-ltd">Limited</span>
+        <button class="c-wish" aria-label="Wishlist">&#x2661;</button>
+      </div>
+      <div class="card-info">
+        <div class="c-cat">Apparel</div>
+        <div class="c-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st-c">(163)</span></div>
+        <h3 class="c-name">MILES MORALES HOODIE</h3>
+        <p class="c-desc">Inspired by Miles Morales. Heavyweight fleece with web-pattern hood lining and oversized fit.</p>
+        <div class="c-foot">
+          <div class="c-price"><span class="p-old">&#8377;2999</span><span class="p-now"><em>&#8377;</em>1999</span></div>
+          <button class="btn-cart" aria-label="Add to cart">&#x1F6D2; Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BANNER / WHY-US -->
+<section id="about" class="banner">
+  <div class="banner-inner">
+    <div class="ban-text">
+      <div class="s-tag">&#x1F577;&#xFE0F; Why Choose Us</div>
+      <h2>With <span>Great Power</span><br>Comes Great<br><span>Merchandise</span></h2>
+      <p>We're not just a store &mdash; we're a community of Spider-Man fans dedicated to bringing you the most authentic, high-quality gear from every corner of the Spider-Verse.</p>
+      <a href="#products" class="btn-p">Shop Collection &#x1F578;&#xFE0F;</a>
+    </div>
+    <div class="features">
+      <div class="fi"><span class="fi-icon">&#x26A1;</span><div class="fi-text"><h4>Lightning Fast Delivery</h4><p>Get your spider gear in 2&ndash;3 business days</p></div></div>
+      <div class="fi"><span class="fi-icon">&#x1F6E1;&#xFE0F;</span><div class="fi-text"><h4>Official Licensed Products</h4><p>100% authentic, Marvel-licensed merchandise</p></div></div>
+      <div class="fi"><span class="fi-icon">&#x1F504;</span><div class="fi-text"><h4>Easy 30-Day Returns</h4><p>No-questions-asked return &amp; exchange policy</p></div></div>
+      <div class="fi"><span class="fi-icon">&#x1F48E;</span><div class="fi-text"><h4>Premium Quality</h4><p>Every product passes our 10-point quality check</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="categories" class="categories">
+  <div class="s-head">
+    <div class="s-tag">&#x1F578;&#xFE0F; Browse By</div>
+    <h2 class="s-title">Shop By <span>Category</span></h2>
+    <p class="s-sub">Find exactly what you're looking for from our hand-curated Spider-Man collection.</p>
+  </div>
+  <div class="cat-grid">
+    <a href="#products" class="cat-card" id="cat-apparel">
+      <span class="cat-icon">&#x1F455;</span>
+      <span class="cat-name">Apparel</span>
+      <span class="cat-count">120+ Items</span>
+    </a>
+    <a href="#products" class="cat-card" id="cat-accessories">
+      <span class="cat-icon">&#x1F392;</span>
+      <span class="cat-name">Accessories</span>
+      <span class="cat-count">85+ Items</span>
+    </a>
+    <a href="#products" class="cat-card" id="cat-collectibles">
+      <span class="cat-icon">&#x1F3AD;</span>
+      <span class="cat-name">Collectibles</span>
+      <span class="cat-count">60+ Items</span>
+    </a>
+    <a href="#products" class="cat-card" id="cat-stationery">
+      <span class="cat-icon">&#x1F4DA;</span>
+      <span class="cat-name">Stationery</span>
+      <span class="cat-count">45+ Items</span>
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="s-head">
+    <div class="s-tag">&#x2764;&#xFE0F; Fan Reviews</div>
+    <h2 class="s-title">What <span>Fans Say</span></h2>
+    <p class="s-sub">Thousands of Spider-Man fans trust us with their merchandise needs.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="t-card">
+      <div class="t-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span></div>
+      <p class="t-text">"The Spider-Man hoodie is absolutely incredible! The web pattern detail on the inside of the hood blew my mind. Best Spider-Man merch I've ever bought &mdash; hands down."</p>
+      <div class="t-author"><div class="t-ava">&#x1F577;&#xFE0F;</div><div><div class="t-name">Arjun Mehta</div><div class="t-loc">Verified Buyer &middot; Mumbai</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span></div>
+      <p class="t-text">"My son absolutely loves the Spider-Man mask! The quality is unreal &mdash; it looks exactly like in the movies. Will definitely order more products!"</p>
+      <div class="t-author"><div class="t-ava">&#x1F9B8;</div><div><div class="t-name">Priya Sharma</div><div class="t-loc">Verified Buyer &middot; Delhi</div></div></div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars"><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span><span class="st">&#9733;</span></div>
+      <p class="t-text">"The varsity jacket is straight fire! So many compliments. Fast delivery, great packaging, and the embroidery is top-notch. 10/10 would recommend to every Spidey fan!"</p>
+      <div class="t-author"><div class="t-ava">&#x1F31F;</div><div><div class="t-name">Rohan Verma</div><div class="t-loc">Verified Buyer &middot; Bangalore</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="contact" class="newsletter">
+  <div class="nl-glow"></div>
+  <div class="nl-inner">
+    <span class="nl-icon">&#x1F578;&#xFE0F;</span>
+    <h2>Join the <span>Spider-Verse</span></h2>
+    <p>Subscribe for exclusive deals, early access to new arrivals, and special offers for true Spider-Man fans!</p>
+    <form class="nl-form" onsubmit="handleNL(event)">
+      <input type="email" id="nl-email" class="nl-input" placeholder="Enter your email address&#x2026;" required>
+      <button type="submit" class="nl-btn">JOIN NOW</button>
+    </form>
+    <p class="nl-note">&#x1F512; No spam ever. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="#home" class="nav-logo" style="display:inline-flex;margin-bottom:0">
+        <div class="logo-orb">&#x1F578;&#xFE0F;</div>
+        <span class="logo-txt">SPIDERVERSE</span>
+      </a>
+      <p>Your ultimate destination for authentic Spider-Man merchandise. Serving fans across the multiverse since 2020.</p>
+      <div class="socials">
+        <a href="#" class="soc" title="Instagram">&#x1F4F8;</a>
+        <a href="#" class="soc" title="Twitter">&#x1F426;</a>
+        <a href="#" class="soc" title="YouTube">&#x25B6;&#xFE0F;</a>
+        <a href="#" class="soc" title="Discord">&#x1F4AC;</a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <ul class="foot-links">
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Apparel</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Collectibles</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Help</h4>
+      <ul class="foot-links">
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Company</h4>
+      <ul class="foot-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>&copy; 2026 SpiderVerse Store. Made with <span>&#x2764;&#xFE0F;</span> for Spider-Man fans everywhere.</p>
+    <div class="bot-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Hide preloader */
+window.addEventListener('load',()=>{setTimeout(()=>{const p=document.getElementById('preloader');if(p)p.style.display='none';},4200)});
+/* Wishlist toggle */
+document.querySelectorAll('.c-wish').forEach(b=>{b.addEventListener('click',function(){const liked=this.textContent.includes('❤');this.textContent=liked?'♡':'❤️';this.style.background=liked?'rgba(255,255,255,.1)':'#E63946';})});
+/* Cart add */
+let cc=3;
+document.querySelectorAll('.btn-cart').forEach(b=>{b.addEventListener('click',function(){const o=this.innerHTML;this.innerHTML='&#x2713; Added!';this.style.background='linear-gradient(135deg,#22c55e,#16a34a)';cc++;document.getElementById('cart-count').textContent=cc;const s=this;setTimeout(()=>{s.innerHTML=o;s.style.background='';},1600)})});
+/* Newsletter */
+function handleNL(e){e.preventDefault();const b=e.target.querySelector('.nl-btn');b.textContent='✓ Subscribed!';b.style.background='linear-gradient(135deg,#22c55e,#16a34a)';document.getElementById('nl-email').value='';setTimeout(()=>{b.textContent='JOIN NOW';b.style.background='';},3000)}
+/* Navbar scroll */
+window.addEventListener('scroll',()=>{const n=document.getElementById('navbar');if(window.scrollY>80){n.style.background='rgba(2,2,4,.97)';n.style.borderBottomColor='rgba(230,57,70,.35)'}else{n.style.background='rgba(2,2,4,.88)';n.style.borderBottomColor='rgba(230,57,70,.18)'}});
+</script>
+</body>
+</html>
